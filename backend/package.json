@@ -1,0 +1,18 @@
+{
+  "name": "ods-project",
+  "version": "1.0.0",
+  "description": "Projecte per solucionar problemes ods",
+  "main": "index.js",
+  "scripts": {
+    "dev": "nodemon index.js"
+  },
+  "author": "Oriol Plazas",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^2.2.2",
+    "express": "^5.2.1"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.14"
+  }
+}
