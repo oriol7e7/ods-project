@@ -1,0 +1,42 @@
+//crear projecte node
+npm init -y
+
+//crear arxiu rael (index.js)
+touch index.js
+
+//instalar framework express i dependencies
+npm install express
+
+//instalar body-parser - per funcion .json()
+npm install body-parser	
+
+//instalar nodemon per run dev com a devDependency
+npm install -D nodemon
+
+//actualitzar package.json:
+"scripts": {
+    "dev": "nodemon index.js"
+  },
+  
+  
+ //index.js -> setup app
+ 
+//import express i llibreries
+import express from "express";
+import fs from "fs"; //treballar amb arxius - read-write
+import bodyParser from "body-parser";
+
+//crear objecte server
+const app = express();
+
+
+//posa server a escoltar a un port
+app.listen(PORT, () => {
+  console.log("Server listing on port " + PORT);
+});
+
+//crear primer endpoint
+app.get("/", (req, res) => {
+  res.send("hello world");
+});
+
