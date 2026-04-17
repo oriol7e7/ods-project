@@ -5,12 +5,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>ProductCycle</title>
     <link rel="stylesheet" href="styles/root.css" />
+    <link rel="stylesheet" href="styles/styles.css" />
     <script src="scripts/auth.js" defer></script>
   </head>
-  <body>
+  <body class="loginBody">
+    <h1 class="mainH">ProductCycle</h1>
     <form id="form" class="login" novalidate>
-      <h1>ProductCycle</h1>
+      <h2 id="title">Inicia sessió</h2>
+      <label for="user">Posa l'usuari</label>
+      <input type="text" required name="user" id="user" />
+      <label for="user">Posa la contrasenya</label>
+      <input type="password" required name="password" id="password" />
+      <span id="errorMsg" class="errorMsg"></span>
+      <button class="submitAuth" type="submit">Inicia Sessió</button>
     </form>
-    <button id="toggleButton">Login</button>
+    <button id="toggleButton">toggle</button>
   </body>
 </html>

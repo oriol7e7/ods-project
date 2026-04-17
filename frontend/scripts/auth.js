@@ -1,22 +1,16 @@
 let isLogin = true;
 const form = document.getElementById("form");
 const toggleButton = document.getElementById("toggleButton");
-const registerHtml = `
-<h1>Registro</h1>
-`;
-const loginHtml = `
-<h1>Inicia Sesion</h1>
-`;
+const errorMsg = document.getElementById("errorMsg");
+const title = document.getElementById("title");
 
 toggleButton.addEventListener("click", () => {
   if (isLogin) {
     isLogin = false;
-    toggleButton.textContent = "Registrate";
-    form.innerHTML = registerHtml;
+    title.textContent = "Registrate";
   } else {
     isLogin = true;
-    toggleButton.textContent = "Inicia Sesion";
-    form.innerHTML = loginHtml;
+    title.textContent = "Inicia Sesion";
   }
 });
 
