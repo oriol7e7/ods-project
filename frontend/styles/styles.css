@@ -13,13 +13,35 @@
 .login {
   display: flex;
   flex-direction: column;
-  gap: 0.5rem;
+  align-items: center;
+  gap: 1rem;
   padding: 2rem;
   border-radius: 6px;
   width: 40%;
   background-color: var(--card-bg);
 }
-
+.sect {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  width: 70%;
+}
+.loginInput {
+  border: none;
+  outline: none;
+  font-size: 1rem;
+  background-color: transparent;
+  font-family: "Montserrat", sans-serif;
+  padding: 0.75rem 0.5rem;
+  border: solid 2px var(--text-muted);
+  border-radius: 6px;
+  width: 100%;
+  transition: all 0.2s ease;
+}
+.loginInput:focus,
+.loginInput:active {
+  border: solid 2px var(--primary);
+}
 .submitAuth {
   align-self: center;
   border: none;
@@ -31,7 +53,7 @@
   font-weight: bold;
   padding: 0.75rem 0.5rem;
   border-radius: 6px;
-  width: 500px;
+  width: 70%;
   cursor: pointer;
   transition: all 0.3s ease;
 }
@@ -43,6 +65,71 @@
 .errorMsg {
   font-size: 1rem;
   font-family: "Montserrat", sans-serif;
-  font-weight: bold;
+  font-weight: 600;
   color: var(--error);
+  transition: all 0.3s ease;
+}
+
+#toggleButton {
+  background-color: transparent;
+  border: none;
+  font-size: 0.9rem;
+  font-family: "Montserrat", sans-serif;
+  text-decoration: underline;
+  cursor: pointer;
+  color: var(--primary);
+}
+
+.colorFeatured {
+  color: var(--primary);
+}
+
+.blogBody {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 2rem;
+  min-height: 100dvh;
+}
+
+.bodyMain {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  background-color: var(--card-bg);
+  border-radius: 6px;
+  padding: 4rem;
+}
+.blog {
+  display: flex;
+  flex-direction: column;
+  gap: 1.75rem;
+}
+
+.imageBlogContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  align-self: center;
+}
+
+.imageBlogContainer img {
+  height: auto;
+  width: 600px;
+  object-fit: cover;
+  aspect-ratio: 16/9;
+  border-radius: 6px;
+  border: solid 2px var(--primary);
+}
+.blogSection {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+.blogText {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
 }

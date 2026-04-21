@@ -1,9 +1,11 @@
 //import express i llibreries
 import express from "express";
+import cors from "cors";
 import fs from "fs"; //treballar amb arxius - read-write
 import bodyParser from "body-parser";
 const PORT = 3000;
 const app = express();
+app.use(cors());
 app.use(bodyParser.json());
 
 /*FUNCIONS PER ESCRIURE I LLEGIR JSON */
@@ -29,4 +31,9 @@ const writeData = (data) => {
 //Posa server a escoltar
 app.listen(PORT, () => {
   console.log("Server listening on " + PORT);
+});
+
+app.get("/users", (req, res) => {
+  const data = readData();
+  res.json(data.users);
 });
