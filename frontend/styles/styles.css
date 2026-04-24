@@ -116,10 +116,9 @@
 }
 
 .imageBlogContainer img {
-  height: auto;
-  width: 600px;
-  object-fit: cover;
-  aspect-ratio: 16/9;
+  height: 300px;
+  width: auto;
+  object-fit: contain;
   border-radius: 6px;
   border: solid 2px var(--primary);
 }

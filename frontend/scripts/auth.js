@@ -6,51 +6,41 @@ const errorMsg = document.getElementById("errorMsg");
 const title = document.getElementById("title");
 const submitBtn = document.getElementById("submitBtn");
 
-toggleButton.addEventListener("click", () => {
-  if (isLogin) {
-    isLogin = false;
-    title.textContent = "Registrat";
-    submitBtn.textContent = "Registrat";
-    toggleButton.textContent = "Tens un compte? Inicia Sessió";
-  } else {
-    isLogin = true;
-    title.textContent = "Inicia Sessió";
-    submitBtn.textContent = "Inicia Sessió";
-    toggleButton.textContent = "No tens compte? Registrat";
-  }
-});
+const setLoginError = () => {
+  submitBtn.disabled = false;
+  submitBtn.innerHTML = "";
+  submitBtn.textContent = "Inicia Sessió";
+  errorMsg.textContent = "No s'ha pogut iniciar sessio";
+};
 
-form.addEventListener("submit", async (e) => {
-  e.preventDefault();
-  const user = document.getElementById("user").value;
-  const pwd = document.getElementById("password").value;
-  if (isLogin) {
-    try {
-      submitBtn.disabled = true;
-      submitBtn.textContent = "";
-      submitBtn.innerHTML =
-        '<svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 24 24"><!-- Icon from SVG Spinners by Utkarsh Verma - https://github.com/n3r4zzurr0/svg-spinners/blob/main/LICENSE --><path fill="currentColor" d="M12,1A11,11,0,1,0,23,12,11,11,0,0,0,12,1Zm0,19a8,8,0,1,1,8-8A8,8,0,0,1,12,20Z" opacity=".25"/><path fill="currentColor" d="M12,4a8,8,0,0,1,7.89,6.7A1.53,1.53,0,0,0,21.38,12h0a1.5,1.5,0,0,0,1.48-1.75,11,11,0,0,0-21.72,0A1.5,1.5,0,0,0,2.62,12h0a1.53,1.53,0,0,0,1.49-1.3A8,8,0,0,1,12,4Z"><animateTransform attributeName="transform" dur="0.75s" repeatCount="indefinite" type="rotate" values="0 12 12;360 12 12"/></path></svg>';
-      const canLogIn = await checkLogin(user, pwd);
-      if (!canLogIn) {
-        submitBtn.disabled = false;
-        submitBtn.innerHTML = "";
-        submitBtn.textContent = "Inicia Sessió";
-        errorMsg.textContent = "Usuari o contrassenya incorrecte";
-        setTimeout(() => {
-          errorMsg.textContent = "";
-        }, 2000);
-      } else {
-        window.location.href = "google.com";
-      }
-    } catch (e) {
-      submitBtn.disabled = false;
-      submitBtn.innerHTML = "";
-      submitBtn.textContent = "Inicia Sessió";
-      errorMsg.textContent = "No s'ha pogut iniciar sessio";
-    }
-  } else {
-  }
-});
+const setIncorrectLogin = () => {
+  submitBtn.disabled = false;
+  submitBtn.innerHTML = "";
+  submitBtn.textContent = "Inicia Sessió";
+  errorMsg.textContent = "Usuari o contrassenya incorrecte";
+  setTimeout(() => {
+    errorMsg.textContent = "";
+  }, 2000);
+};
+
+const setLoadingState = () => {
+  submitBtn.disabled = true;
+  submitBtn.textContent = "";
+  submitBtn.innerHTML =
+    '<svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 24 24"><!-- Icon from SVG Spinners by Utkarsh Verma - https://github.com/n3r4zzurr0/svg-spinners/blob/main/LICENSE --><path fill="currentColor" d="M12,1A11,11,0,1,0,23,12,11,11,0,0,0,12,1Zm0,19a8,8,0,1,1,8-8A8,8,0,0,1,12,20Z" opacity=".25"/><path fill="currentColor" d="M12,4a8,8,0,0,1,7.89,6.7A1.53,1.53,0,0,0,21.38,12h0a1.5,1.5,0,0,0,1.48-1.75,11,11,0,0,0-21.72,0A1.5,1.5,0,0,0,2.62,12h0a1.53,1.53,0,0,0,1.49-1.3A8,8,0,0,1,12,4Z"><animateTransform attributeName="transform" dur="0.75s" repeatCount="indefinite" type="rotate" values="0 12 12;360 12 12"/></path></svg>';
+};
+
+const renderRegisterMode = () => {
+  title.textContent = "Registrat";
+  submitBtn.textContent = "Registrat";
+  toggleButton.textContent = "Tens un compte? Inicia Sessió";
+};
+
+const renderLoginMode = () => {
+  title.textContent = "Inicia Sessió";
+  submitBtn.textContent = "Inicia Sessió";
+  toggleButton.textContent = "No tens compte? Registrat";
+};
 
 const checkLogin = async (userEmail, pwd) => {
   const users = await getAllUsers();
@@ -65,3 +55,32 @@ const checkLogin = async (userEmail, pwd) => {
     }
   }
 };
+
+toggleButton.addEventListener("click", () => {
+  if (isLogin) {
+    isLogin = false;
+    renderRegisterMode();
+  } else {
+    isLogin = true;
+  }
+});
+
+form.addEventListener("submit", async (e) => {
+  e.preventDefault();
+  const user = document.getElementById("user").value;
+  const pwd = document.getElementById("password").value;
+  if (isLogin) {
+    try {
+      setLoadingState();
+      const canLogIn = await checkLogin(user, pwd);
+      if (!canLogIn) {
+        setIncorrectLogin();
+      } else {
+        window.location.href = "google.com";
+      }
+    } catch (e) {
+      setLoginError();
+    }
+  } else {
+  }
+});
