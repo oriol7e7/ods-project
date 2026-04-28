@@ -37,3 +37,8 @@ app.get("/users", (req, res) => {
   const data = readData();
   res.json(data.users);
 });
+
+app.get("/products", (req, res) => {
+  const data = readData();
+  res.json(data.products);
+});

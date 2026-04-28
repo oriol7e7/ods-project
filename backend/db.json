@@ -10,5 +10,18 @@
       "email": "oriol@gmail.com",
       "password": "oriol"
     }
+  ],
+  "products": [
+    {
+      "id": 1,
+      "user": 2,
+      "name": "Projector Epson Full HD",
+      "price": 30,
+      "desc": "Lloguer de cap de setmana per a presentacions o per muntar-te un cinema a casa. Cables inclosos.",
+      "state": "Com nou",
+      "modality": "Lloguer",
+      "location": "Barcelona nord",
+      "img": "https://i8.amplience.net/i/epsonemear/fh08_w_std_03_jpg"
+    }
   ]
 }
