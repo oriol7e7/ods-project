@@ -28,6 +28,7 @@ body {
   background-color: var(--bg-color);
   color: var(--text-main);
   width: 100%;
+  position: relative;
 }
 
 h1 {

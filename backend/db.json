@@ -22,6 +22,61 @@
       "modality": "Lloguer",
       "location": "Barcelona nord",
       "img": "https://i8.amplience.net/i/epsonemear/fh08_w_std_03_jpg"
+    },
+    {
+      "id": 2,
+      "user": 1,
+      "name": "Monitor Dell UltraSharp 27\" 4K",
+      "price": 150,
+      "desc": "Monitor ideal per a disseny i programació. Molt ben cuidat, sense píxels morts. El venc per canvi d'oficina.",
+      "state": "Molt bon estat",
+      "modality": "Venda",
+      "location": "L'Hospitalet de Llobregat",
+      "img": "https://i8.amplience.net/i/epsonemear/fh08_w_std_03_jpg"
+    },
+    {
+      "id": 3,
+      "user": 3,
+      "name": "Teclat Mecànic Keychron K2",
+      "price": 10,
+      "desc": "Lloguer per setmanes. Switches brown. Perfecte per provar si t'agraden els teclats mecànics abans de comprar-ne un de nou.",
+      "state": "Nou",
+      "modality": "Lloguer",
+      "location": "Sabadell",
+      "img": "https://i8.amplience.net/i/epsonemear/fh08_w_std_03_jpg"
+    },
+    {
+      "id": 4,
+      "user": 2,
+      "name": "Impressora Làser Brother HL",
+      "price": 45,
+      "desc": "Impressora blanc i negre. Inclou un tòner gairebé ple. Té una petita rascada al lateral però funciona a la perfecció.",
+      "state": "Amb marques d'ús",
+      "modality": "Venda",
+      "location": "Badalona",
+      "img": "https://i8.amplience.net/i/epsonemear/fh08_w_std_03_jpg"
+    },
+    {
+      "id": 5,
+      "user": 1,
+      "name": "Servidor NAS Synology DiskStation",
+      "price": 25,
+      "desc": "Lloguer mensual. Ideal per fer còpies de seguretat temporals de projectes o provar entorns locals. (Es lloga sense discos durs).",
+      "state": "Com nou",
+      "modality": "Lloguer",
+      "location": "Terrassa",
+      "img": "https://i8.amplience.net/i/epsonemear/fh08_w_std_03_jpg"
+    },
+    {
+      "id": 6,
+      "user": 4,
+      "name": "Targeta Gràfica NVIDIA RTX 3060",
+      "price": 220,
+      "desc": "Ús exclusiu per a gaming algun cap de setmana, mai s'ha utilitzat per minar criptomonedes. Conservo la caixa original.",
+      "state": "Molt bon estat",
+      "modality": "Venda",
+      "location": "Barcelona Centre",
+      "img": "https://i8.amplience.net/i/epsonemear/fh08_w_std_03_jpg"
     }
   ]
 }
