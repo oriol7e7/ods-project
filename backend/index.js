@@ -47,5 +47,5 @@ app.get("/product/:id", (req, res) => {
   const data = readData();
   const id = parseInt(req.params.id);
   const product = data.products.filter((p) => p.id == id);
-  res.json(product);
+  res.json(product[0]);
 });

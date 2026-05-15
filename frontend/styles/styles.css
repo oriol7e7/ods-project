@@ -238,3 +238,77 @@
   align-items: center;
   gap: 0.25rem;
 }
+
+.producteInfo {
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+  align-items: flex-start;
+  gap: 4rem;
+}
+
+.producteInfo img {
+  width: 50%;
+  aspect-ratio: 16/9;
+  object-fit: cover;
+  border: solid 3px var(--primary);
+  border-radius: 6px;
+}
+.producteInfo article {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  gap: 1rem;
+}
+.productArticle p {
+  width: 80%;
+}
+.contactBtn {
+  border: none;
+  outline: none;
+  background-color: var(--primary);
+  color: var(--text-main-dark);
+  font-size: 1rem;
+  font-family: "Montserrat", sans-serif;
+  font-weight: bold;
+  padding: 0.75rem 0.5rem;
+  border-radius: 6px;
+  width: 70%;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.contactBtn:hover {
+  background-color: var(--primary-hover);
+}
+.productTags {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  gap: 1rem;
+  width: 70%;
+  padding: 0.75rem 0.5rem;
+  margin: 1rem 0;
+}
+
+.productTags p {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.25rem;
+  padding: 0.3rem 0.8rem;
+  border-radius: 50px;
+  font-weight: 600;
+  width: fit-content;
+}
+
+.productTags .productState {
+  border: solid 1px var(--text-muted);
+  color: var(--text-muted);
+}
+.productTags .modalityTag {
+  border: solid 1px var(--primary);
+  background-color: rgba(0, 168, 150, 0.1);
+  color: var(--primary);
+}
