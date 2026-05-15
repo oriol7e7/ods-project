@@ -42,3 +42,10 @@ app.get("/products", (req, res) => {
   const data = readData();
   res.json(data.products);
 });
+
+app.get("/product/:id", (req, res) => {
+  const data = readData();
+  const id = parseInt(req.params.id);
+  const product = data.products.filter((p) => p.id == id);
+  res.json(product);
+});
