@@ -15,3 +15,44 @@ export const getProductById = async (id) => {
   const data = await response.json();
   return data;
 };
+
+export const postProduct = async (product) => {
+  const response = await fetch("http://localhost:3000/products", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(product),
+  });
+  if (!response.ok) {
+    throw new Error("Cannot post product");
+  }
+  const data = await response.json();
+  return data;
+};
+
+export const deleteProduct = async (id) => {
+  const response = await fetch("http://localhost:3000/products/" + id, {
+    method: "DELETE",
+  });
+  if (!response.ok) {
+    throw new Error("Cannot delete product");
+  }
+  const data = await response.json();
+  return data;
+};
+
+export const putProduct = async (id, product) => {
+  const response = await fetch("http://localhost:3000/products/" + id, {
+    method: "PUT",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(product),
+  });
+  if (!response.ok) {
+    throw new Error("Cannot put product");
+  }
+  const data = await response.json();
+  return data;
+};
