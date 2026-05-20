@@ -34,8 +34,7 @@ const renderProductCard = async (product, container) => {
   article.classList.add("productGridCard");
   article.innerHTML = productHTML;
   article.addEventListener("click", () => {
-    window.location.href =
-      "http://127.0.0.1:5500/frontend/pages/producte.html?id=" + product.id;
+    window.location.href = "producte.html?id=" + product.id;
   });
 
   container.appendChild(article);

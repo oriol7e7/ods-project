@@ -51,7 +51,7 @@ app.listen(PORT, () => {
   console.log("Server listening on " + PORT);
 });
 
-app.get("/users", (req, res) => {
+app.get("/users", async (req, res) => {
   const data = readData();
   res.json(data.users);
 });
