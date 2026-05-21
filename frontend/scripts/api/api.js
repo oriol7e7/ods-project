@@ -56,3 +56,37 @@ export const putProduct = async (id, product) => {
   const data = await response.json();
   return data;
 };
+
+export const registerUser = async (user) => {
+  //user.email, user.pwd
+  const response = await fetch("http://localhost:3000/register", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(user),
+    credentials: "include",
+  });
+  if (!response.ok) {
+    throw new Error("Cannot register user");
+  }
+  const data = await response.json();
+  return data.error ? data.error : true;
+};
+
+export const loginUser = async (user) => {
+  //user.email, user.pwd
+  const response = await fetch("http://localhost:3000/login", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(user),
+    credentials: "include",
+  });
+  if (!response.ok) {
+    throw new Error("Cannot login user");
+  }
+  const data = await response.json();
+  return data.error ? data.error : true;
+};

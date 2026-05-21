@@ -60,14 +60,14 @@ app.listen(PORT, () => {
 
 app.post("/register", async (req, res) => {
   try {
-    const { mail, pwd } = req.body;
-    if (!mail || !pwd) {
+    const { email, pwd } = req.body;
+    if (!email || !pwd) {
       throw new Error("ERROR: falten dades o son incorrectes");
     }
     const hashedPwd = await bcrypt.hash(pwd, 10);
-    const createdUser = createUser(mail, hashedPwd);
+    const createdUser = createUser(email, hashedPwd);
     if (!createdUser.error) {
-      setUserToken(res, createdUser, mail, 100);
+      setUserToken(res, createdUser, email, 100);
       res.json({
         status: "success",
         message: "User created successfully successfully",
@@ -82,11 +82,11 @@ app.post("/register", async (req, res) => {
 
 app.post("/login", async (req, res) => {
   try {
-    const { mail, pwd } = req.body;
-    if (!mail || !pwd) {
+    const { email, pwd } = req.body;
+    if (!email || !pwd) {
       throw new Error("ERROR: falten dades o son incorrectes");
     }
-    const user = getUserByEmail(mail);
+    const user = getUserByEmail(email);
     if (!user || user == null) {
       throw new Error("User not found");
     }

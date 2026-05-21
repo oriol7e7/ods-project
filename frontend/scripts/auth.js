@@ -1,4 +1,4 @@
-import { getAllUsers } from "./api/api.js";
+import { loginUser, registerUser } from "./api/api.js";
 let isLogin = true;
 const form = document.getElementById("form");
 const toggleButton = document.getElementById("toggleButton");
@@ -17,6 +17,16 @@ const setIncorrectLogin = () => {
   submitBtn.disabled = false;
   submitBtn.innerHTML = "";
   submitBtn.textContent = "Inicia Sessió";
+  errorMsg.textContent = "Usuari o contrassenya incorrecte";
+  setTimeout(() => {
+    errorMsg.textContent = "";
+  }, 2000);
+};
+
+const setIncorrectRegister = () => {
+  submitBtn.disabled = false;
+  submitBtn.innerHTML = "";
+  submitBtn.textContent = "Registrat";
   errorMsg.textContent = "Usuari o contrassenya incorrecte";
   setTimeout(() => {
     errorMsg.textContent = "";
@@ -42,25 +52,12 @@ const renderLoginMode = () => {
   toggleButton.textContent = "No tens compte? Registrat";
 };
 
-const checkLogin = async (userEmail, pwd) => {
-  const users = await getAllUsers();
-  const foundUser = users.find((u) => u.email == userEmail) || false;
-  if (!foundUser) {
-    return false;
-  } else {
-    if (foundUser.password == pwd) {
-      return true;
-    } else {
-      return false;
-    }
-  }
-};
-
 toggleButton.addEventListener("click", () => {
   if (isLogin) {
     isLogin = false;
     renderRegisterMode();
   } else {
+    renderLoginMode();
     isLogin = true;
   }
 });
@@ -72,15 +69,26 @@ form.addEventListener("submit", async (e) => {
   if (isLogin) {
     try {
       setLoadingState();
-      const canLogIn = await checkLogin(user, pwd);
+      const canLogIn = await loginUser({ user: user, pwd: pwd });
       if (!canLogIn) {
         setIncorrectLogin();
       } else {
-        window.location.href = "google.com";
+        window.location.href = "veure-productes.html";
       }
     } catch (e) {
       setLoginError();
     }
   } else {
+    try {
+      setLoadingState();
+      const canRegister = await registerUser({ user: user, pwd: pwd });
+      if (!canRegister) {
+        setIncorrectRegister();
+      } else {
+        window.location.href = "veure-productes.html";
+      }
+    } catch (e) {
+      setLoginError();
+    }
   }
 });
