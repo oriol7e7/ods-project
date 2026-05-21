@@ -1,14 +1,14 @@
-import db from "../db.js";
+import db from "../db/db.js";
 import { getErrorFeedback, getAllUsers, userIdExists } from "./helpers.js";
 
 export const createProduct = (product) => {
   try {
-    if (!userIdExists(product.user)) return false;
+    if (!userIdExists(product.user_id)) return false;
     const stmt = db.prepare(
-      "INSERT INTO product (user, name, price, desc, state, modality, location, img) VALUES (?, ?, ?, ?, ?, ?, ?, ?)",
+      "INSERT INTO products (user_id, name, price, desc, state, modality, location, img) VALUES (?, ?, ?, ?, ?, ?, ?, ?)",
     );
     const result = stmt.run(
-      product.user,
+      product.user_id,
       product.name,
       product.price,
       product.desc,
@@ -51,10 +51,10 @@ export const deleteProductById = (id) => {
 export const updateProduct = (id, product) => {
   try {
     const stmt = db.prepare(
-      "UPDATE products SET user = ?, name = ?, price = ?, desc = ?, state = ?, modality = ?, location = ?, img = ? WHERE id = ?",
+      "UPDATE products SET user_id = ?, name = ?, price = ?, desc = ?, state = ?, modality = ?, location = ?, img = ? WHERE id = ?",
     );
     const result = stmt.run(
-      product.user,
+      product.user_id,
       product.name,
       product.price,
       product.desc,

@@ -1,4 +1,4 @@
-import db from "../db.js";
+import db from "../db/db.js";
 
 export const getErrorFeedback = (msg) => {
   const error = {
@@ -10,12 +10,7 @@ export const getErrorFeedback = (msg) => {
 };
 export const userIdExists = (id) => {
   const users = getAllUsers();
-  users.forEach((u) => {
-    if (u.id == id) {
-      return true;
-    }
-  });
-  return false;
+  return users.some((u) => u.id == id);
 };
 
 export const getAllUsers = () => {

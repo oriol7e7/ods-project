@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ProductCycle</title>
+    <link rel="stylesheet" href="styles/root.css" />
+    <link rel="stylesheet" href="styles/styles.css" />
+    <script src="scripts/auth.js" defer type="module"></script>
+  </head>
+  <body class="loginBody">
+    <h1 class="mainH">ProductCycle</h1>
+    <form id="form" class="login" novalidate>
+      <h2 id="title">Inicia sessió</h2>
+      <div class="sect">
+        <label for="user">Posa l'usuari</label>
+        <input type="text" required name="user" id="user" class="loginInput" />
+      </div>
+      <div class="sect">
+        <label for="user">Posa la contrasenya</label>
+        <input
+          type="password"
+          required
+          name="password"
+          id="password"
+          class="loginInput"
+        />
+      </div>
+      <span id="errorMsg" class="errorMsg"></span>
+      <button id="toggleButton" type="button">No tens compte? Registrat</button>
+      <button class="submitAuth" type="submit" id="submitBtn">
+        Inicia Sessió
+      </button>
+    </form>
+  </body>
+</html>

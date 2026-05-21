@@ -2,19 +2,23 @@ GET http://localhost:3000/users
 
 ###
 
-GET http://localhost:3000/product/2
+GET http://localhost:3000/products
 
 ###
 
-POST http://localhost:3000/books HTTP/1.1
+POST http://localhost:3000/products HTTP/1.1
 Content-Type: application/json
 
 {
-    "name": "Charlie & the Chocolate Factory",
-    "author": "Roald Dahl",
-    "year": 1964
+  "user_id": 1,
+  "name": "Càmera Reflex Canon EOS 2000D",
+  "price": 250,
+  "desc": "Càmera ideal per iniciar-se en la fotografia. Inclou objectiu 18-55mm, carregador original i bossa de transport. Té molt poc ús.",
+  "state": "Molt bon estat",
+  "modality": "Venda",
+  "location": "Barcelona Centre",
+  "img": "https://i8.amplience.net/i/epsonemear/fh08_w_std_03_jpg"
 }
-
 ###
 PUT http://localhost:3000/books/3 HTTP/1.1
 Content-Type: application/json
