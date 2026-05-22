@@ -69,3 +69,8 @@ export const updateProduct = (id, product) => {
     return getErrorFeedback(e);
   }
 };
+
+export const getProductsByUserId = async (user_id) => {
+  const stmt = db.prepare("SELECT * FROM products WHERE user_id = ?");
+  return stmt.all(user_id);
+};

@@ -12,6 +12,7 @@ import {
   getProductById,
   deleteProductById,
   updateProduct,
+  getProductsByUserId,
 } from "./dao/productsDao.js";
 import {
   createUser,
@@ -202,6 +203,23 @@ app.get("/auth/me", (req, res) => {
         message: "User logged in",
         user: { user_id: user_id, mail: mail },
       });
+    }
+  } catch (e) {
+    res.json({ status: "error", message: e.message, error: true });
+  }
+});
+
+app.get("/products/me", (req, res) => {
+  try {
+    //Llegeixo la possible cookie de l'usuari
+    const token = req.cookies.token;
+    if (!token) {
+      throw new Error("No user logged");
+    } else {
+      const decoded = jwt.verify(token, "1234MegaKey67@@");
+      const { user_id } = decoded;
+      const data = getProductsByUserId(user_id);
+      res.json(data);
     }
   } catch (e) {
     res.json({ status: "error", message: e.message, error: true });
