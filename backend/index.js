@@ -3,6 +3,8 @@ import express from "express";
 import cors from "cors";
 import bcrypt from "bcrypt";
 import bodyParser from "body-parser";
+import jwt from "jsonwebtoken";
+import cookieParser from "cookie-parser";
 import {
   createProduct,
   getAllProducts,
@@ -19,9 +21,22 @@ import {
 } from "./dao/usersDao.js";
 const PORT = 3000;
 const app = express();
-app.use(cors());
-app.use(bodyParser.json());
 
+const origenesPermitidos = [
+  "http://127.0.0.1:5500",
+  "http://localhost:5500",
+  "http://localhost:5173",
+  "http://localhost:3000",
+];
+
+app.use(
+  cors({
+    origin: origenesPermitidos,
+    credentials: true,
+  }),
+);
+app.use(bodyParser.json());
+app.use(cookieParser());
 const validateProduct = (product) => {
   if (
     product.user_id &&
@@ -41,7 +56,7 @@ const validateProduct = (product) => {
 };
 
 export const setUserToken = (res, user_id, mail, days = 7) => {
-  const token = jwt.sign({ userId: user_id, mail: mail }, "1234MegaKey67@@", {
+  const token = jwt.sign({ user_id: user_id, mail: mail }, "1234MegaKey67@@", {
     expiresIn: `${days}d`,
   });
   const maxAgeInMs = days * 24 * 60 * 60 * 1000;
@@ -176,7 +191,7 @@ app.put("/products/:id", (req, res) => {
 app.get("/auth/me", (req, res) => {
   try {
     //Llegeixo la possible cookie de l'usuari
-    const token = req.cookie.token;
+    const token = req.cookies.token;
     if (!token) {
       res.status(401).json({ loggedIn: false, message: "No authorized" });
     } else {
