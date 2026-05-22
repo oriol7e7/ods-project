@@ -172,3 +172,23 @@ app.put("/products/:id", (req, res) => {
     res.json({ status: "error", message: e.message, error: true });
   }
 });
+
+app.get("/auth/me", (req, res) => {
+  try {
+    //Llegeixo la possible cookie de l'usuari
+    const token = req.cookie.token;
+    if (!token) {
+      res.status(401).json({ loggedIn: false, message: "No authorized" });
+    } else {
+      const decoded = jwt.verify(token, "1234MegaKey67@@");
+      const { user_id, mail } = decoded;
+      res.json({
+        loggedIn: true,
+        message: "User logged in",
+        user: { user_id: user_id, mail: mail },
+      });
+    }
+  } catch (e) {
+    res.json({ status: "error", message: e.message, error: true });
+  }
+});

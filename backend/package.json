@@ -1,6 +1,7 @@
 {
   "name": "ods-project",
   "version": "1.0.0",
+  "type": "module",
   "description": "Projecte per solucionar problemes ods",
   "main": "index.js",
   "scripts": {
