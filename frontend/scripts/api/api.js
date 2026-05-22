@@ -90,3 +90,15 @@ export const loginUser = async (user) => {
   const data = await response.json();
   return data.error ? data.error : true;
 };
+
+export const userIsLogged = async () => {
+  const response = await fetch("http://localhost:3000/auth/me", {
+    method: "GET",
+    credentials: "include",
+  });
+  if (!response.ok) {
+    throw new Error("Cannot fetch API");
+  }
+  const data = await response.json();
+  return data;
+};
