@@ -32,6 +32,9 @@ document.addEventListener("DOMContentLoaded", async () => {
           <button class="login" id="login">Log In</button> 
         </nav>
       `;
+      document.getElementById("login").addEventListener("click", () => {
+        window.location.href = "autenticacio.html";
+      });
     }
   } catch (e) {
     headerContainer.innerHTML = `
