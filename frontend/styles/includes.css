@@ -12,6 +12,7 @@ header {
   padding: 1rem;
   transition: all 0.3s ease;
 }
+
 .headerTitle {
   color: var(--primary);
   font-size: 1.424rem;
@@ -26,6 +27,7 @@ header {
   align-items: center;
   gap: 1rem;
 }
+
 .headerNav a {
   color: var(--text-main);
   font-size: 1rem;
@@ -35,4 +37,42 @@ header {
 .scrolled {
   border-bottom: solid 2px var(--primary);
   transition: all 0.3s ease;
+}
+
+.headerNav #login,
+.headerNav #logout {
+  font-family: "Montserrat", sans-serif;
+  font-size: 0.9rem;
+  font-weight: bold;
+  padding: 0.4rem 1.2rem;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  width: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.headerNav #login {
+  background-color: var(--primary);
+  color: var(--text-main-dark);
+  border: solid 2px var(--primary);
+}
+
+.headerNav #login:hover {
+  transform: translateY(-1px);
+  background-color: var(--primary-hover);
+}
+
+.headerNav #logout {
+  background-color: transparent;
+  color: var(--text-main);
+  border: solid 2px var(--text-muted);
+}
+
+.headerNav #logout:hover {
+  border-color: var(--error);
+  color: var(--error);
+  transform: translateY(-2px);
 }

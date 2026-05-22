@@ -96,9 +96,6 @@ export const userIsLogged = async () => {
     method: "GET",
     credentials: "include",
   });
-  if (!response.ok) {
-    throw new Error("Cannot fetch API");
-  }
   const data = await response.json();
   return data;
 };
