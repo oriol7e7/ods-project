@@ -1,4 +1,4 @@
-import { userIsLogged } from "./api/api";
+import { userIsLogged } from "./api/api.js";
 const isLoggedIn = false;
 let header = `
 <a href="/frontend/pages/veure-productes.html" class="headerTitle">ProductCycle </a>
