@@ -105,7 +105,7 @@ app.post("/login", async (req, res) => {
     if (!isPasswordValid) {
       throw new Error("Credencials incorrectes");
     }
-    const token = setUserToken(user.user_id, user.email, 100);
+    const token = setUserToken(user.id, user.email, 100);
     res.json({
       status: "success",
       token: token,
@@ -116,9 +116,41 @@ app.post("/login", async (req, res) => {
   }
 });
 
-app.get("/products", (req, res) => {
-  const data = getAllProducts();
-  res.json(data);
+app.get("/auth/me", (req, res) => {
+  try {
+    //Llegeixo la possible cookie de l'usuari
+    const token = req.cookies.token;
+    if (!token) {
+      res.status(401).json({ loggedIn: false, message: "No authorized" });
+    } else {
+      const decoded = jwt.verify(token, "1234MegaKey67@@");
+      const { user_id, mail } = decoded;
+      res.json({
+        loggedIn: true,
+        message: "User logged in",
+        user: { user_id: user_id, mail: mail },
+      });
+    }
+  } catch (e) {
+    res.json({ status: "error", message: e.message, error: true });
+  }
+});
+
+app.get("/products/me", (req, res) => {
+  try {
+    //Llegeixo la possible cookie de l'usuari
+    const token = req.cookies.token;
+    if (!token) {
+      throw new Error("No user logged");
+    } else {
+      const decoded = jwt.verify(token, "1234MegaKey67@@");
+      const { user_id } = decoded;
+      const data = getProductsByUserId(user_id) || [];
+      res.json(data);
+    }
+  } catch (e) {
+    res.json({ status: "error", message: e.message, error: true });
+  }
 });
 
 app.get("/products/:id", (req, res) => {
@@ -129,6 +161,11 @@ app.get("/products/:id", (req, res) => {
   } else {
     res.json(data);
   }
+});
+
+app.get("/products", (req, res) => {
+  const data = getAllProducts();
+  res.json(data);
 });
 
 app.post("/products", (req, res) => {
@@ -179,43 +216,6 @@ app.put("/products/:id", (req, res) => {
       res.json({ status: "success", message: "Product modified successfully" });
     } else {
       res.json({ status: "error", message: "Cannot put product", error: true });
-    }
-  } catch (e) {
-    res.json({ status: "error", message: e.message, error: true });
-  }
-});
-
-app.get("/auth/me", (req, res) => {
-  try {
-    //Llegeixo la possible cookie de l'usuari
-    const token = req.cookies.token;
-    if (!token) {
-      res.status(401).json({ loggedIn: false, message: "No authorized" });
-    } else {
-      const decoded = jwt.verify(token, "1234MegaKey67@@");
-      const { user_id, mail } = decoded;
-      res.json({
-        loggedIn: true,
-        message: "User logged in",
-        user: { user_id: user_id, mail: mail },
-      });
-    }
-  } catch (e) {
-    res.json({ status: "error", message: e.message, error: true });
-  }
-});
-
-app.get("/products/me", (req, res) => {
-  try {
-    //Llegeixo la possible cookie de l'usuari
-    const token = req.cookies.token;
-    if (!token) {
-      throw new Error("No user logged");
-    } else {
-      const decoded = jwt.verify(token, "1234MegaKey67@@");
-      const { user_id } = decoded;
-      const data = getProductsByUserId(user_id);
-      res.json(data);
     }
   } catch (e) {
     res.json({ status: "error", message: e.message, error: true });

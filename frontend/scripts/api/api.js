@@ -107,3 +107,12 @@ export const userIsLogged = async () => {
   const data = await response.json();
   return data;
 };
+
+export const getProductsByLoggedUser = async () => {
+  const response = await fetch("http://localhost:3000/products/me", {
+    method: "GET",
+    credentials: "include",
+  });
+  const data = await response.json();
+  return data;
+};
