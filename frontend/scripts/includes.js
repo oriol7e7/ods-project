@@ -1,5 +1,9 @@
 import { userIsLogged } from "./api/api.js";
 const isLoggedIn = false;
+const logout = () => {
+  document.cookie = "token=; max-age=0; path=/; sameSite=lax";
+  window.location.reload();
+};
 let header = `
 <a href="/frontend/pages/veure-productes.html" class="headerTitle">ProductCycle </a>
 <nav class="headerNav">
@@ -22,6 +26,7 @@ document.addEventListener("DOMContentLoaded", async () => {
           <button class="logout" id="logout">Log Out</button>
         </nav>
       `;
+      document.getElementById("logout").addEventListener("click", logout);
     } else {
       headerContainer.innerHTML = `
         <a href="/frontend/pages/veure-productes.html" class="headerTitle">ProductCycle </a>

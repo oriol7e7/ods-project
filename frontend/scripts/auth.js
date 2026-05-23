@@ -69,8 +69,8 @@ form.addEventListener("submit", async (e) => {
   if (isLogin) {
     try {
       setLoadingState();
-      const canLogIn = await loginUser({ user: user, pwd: pwd });
-      if (!canLogIn) {
+      const canLogIn = await loginUser({ email: user, pwd: pwd });
+      if (canLogIn.error) {
         setIncorrectLogin();
       } else {
         window.location.href = "veure-productes.html";
@@ -81,8 +81,8 @@ form.addEventListener("submit", async (e) => {
   } else {
     try {
       setLoadingState();
-      const canRegister = await registerUser({ user: user, pwd: pwd });
-      if (!canRegister) {
+      const canRegister = await registerUser({ email: user, pwd: pwd });
+      if (canRegister.error) {
         setIncorrectRegister();
       } else {
         window.location.href = "veure-productes.html";

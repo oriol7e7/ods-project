@@ -56,17 +56,11 @@ const validateProduct = (product) => {
   }
 };
 
-export const setUserToken = (res, user_id, mail, days = 7) => {
+export const setUserToken = (user_id, mail, days = 7) => {
   const token = jwt.sign({ user_id: user_id, mail: mail }, "1234MegaKey67@@", {
     expiresIn: `${days}d`,
   });
-  const maxAgeInMs = days * 24 * 60 * 60 * 1000;
-  res.cookie("token", token, {
-    httpOnly: true,
-    secure: false,
-    maxAge: maxAgeInMs,
-    sameSite: "strict",
-  });
+  return token;
 };
 
 //Posa server a escoltar
@@ -83,9 +77,10 @@ app.post("/register", async (req, res) => {
     const hashedPwd = await bcrypt.hash(pwd, 10);
     const createdUser = createUser(email, hashedPwd);
     if (!createdUser.error) {
-      setUserToken(res, createdUser, email, 100);
+      const token = setUserToken(createdUser, email, 100);
       res.json({
         status: "success",
+        token: token,
         message: "User created successfully successfully",
       });
     } else {
@@ -110,9 +105,10 @@ app.post("/login", async (req, res) => {
     if (!isPasswordValid) {
       throw new Error("Credencials incorrectes");
     }
-    setUserToken(res, user.user_id, user.email, 100);
+    const token = setUserToken(user.user_id, user.email, 100);
     res.json({
       status: "success",
+      token: token,
       message: "User logged successfully successfully",
     });
   } catch (e) {

@@ -7,6 +7,7 @@ export const createUser = (user, pwd, role = "normal") => {
       "INSERT INTO users (email, password, role) VALUES (?, ?, ?)",
     );
     const result = stmt.run(user, pwd, role);
+
     return result.lastInsertRowid;
   } catch (e) {
     return getErrorFeedback(e);

@@ -71,7 +71,11 @@ export const registerUser = async (user) => {
     throw new Error("Cannot register user");
   }
   const data = await response.json();
-  return data.error ? data.error : true;
+  if (data.token) {
+    const maxAgeInSeconds = 100 * 24 * 60 * 60;
+    document.cookie = `token=${data.token};max-age=${maxAgeInSeconds}; path=/; sameSite=lax`;
+  }
+  return data;
 };
 
 export const loginUser = async (user) => {
@@ -88,7 +92,11 @@ export const loginUser = async (user) => {
     throw new Error("Cannot login user");
   }
   const data = await response.json();
-  return data.error ? data.error : true;
+  if (data.token) {
+    const maxAgeInSeconds = 100 * 24 * 60 * 60;
+    document.cookie = `token=${data.token};max-age=${maxAgeInSeconds}; path=/; sameSite=lax`;
+  }
+  return data;
 };
 
 export const userIsLogged = async () => {
