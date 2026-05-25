@@ -7,9 +7,11 @@
   width: 100%;
   height: 90dvh;
 }
+
 .loginBody .mainH {
   color: var(--primary);
 }
+
 .login {
   display: flex;
   flex-direction: column;
@@ -20,12 +22,14 @@
   width: 40%;
   background-color: var(--card-bg);
 }
+
 .sect {
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
   width: 70%;
 }
+
 .loginInput {
   border: none;
   outline: none;
@@ -38,10 +42,12 @@
   width: 100%;
   transition: all 0.2s ease;
 }
+
 .loginInput:focus,
 .loginInput:active {
   border: solid 2px var(--primary);
 }
+
 .submitAuth {
   align-self: center;
   border: none;
@@ -102,6 +108,7 @@
   padding: 2rem;
   width: 100%;
 }
+
 .blog {
   display: flex;
   flex-direction: column;
@@ -123,11 +130,13 @@
   border-radius: 6px;
   border: solid 2px var(--primary);
 }
+
 .blogSection {
   display: flex;
   flex-direction: column;
   gap: 0.75rem;
 }
+
 .blogText {
   display: flex;
   flex-direction: column;
@@ -175,6 +184,7 @@
   grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
   gap: 1rem;
 }
+
 .productGridCard {
   background-color: var(--card-bg);
   padding: 0.25rem;
@@ -200,6 +210,7 @@
   border-radius: 6px;
   align-self: center;
 }
+
 .productCardDesc {
   display: flex;
   flex-direction: column;
@@ -222,6 +233,7 @@
   gap: 0.5rem;
   padding: 0.25rem;
 }
+
 .modality {
   border-radius: 50px;
   padding: 0.2rem 0.6rem;
@@ -254,6 +266,7 @@
   border: solid 3px var(--primary);
   border-radius: 6px;
 }
+
 .producteInfo article {
   display: flex;
   flex-direction: column;
@@ -261,9 +274,11 @@
   align-items: flex-start;
   gap: 1rem;
 }
+
 .productArticle p {
   width: 80%;
 }
+
 .contactBtn {
   border: none;
   outline: none;
@@ -282,6 +297,7 @@
 .contactBtn:hover {
   background-color: var(--primary-hover);
 }
+
 .productTags {
   display: flex;
   justify-content: space-around;
@@ -307,8 +323,39 @@
   border: solid 1px var(--text-muted);
   color: var(--text-muted);
 }
+
 .productTags .modalityTag {
   border: solid 1px var(--primary);
   background-color: rgba(0, 168, 150, 0.1);
   color: var(--primary);
+}
+
+.createProductMain {
+  align-items: center;
+}
+
+.formCard {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  padding: 2rem;
+  border-radius: 6px;
+  width: 80%;
+  background-color: var(--card-bg);
+}
+
+.formSect {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  width: 100%;
+}
+
+.formTextarea {
+  resize: vertical;
+}
+
+.formSubmitBtn {
+  margin-top: 1rem;
 }

@@ -76,16 +76,15 @@ app.post("/register", async (req, res) => {
     }
     const hashedPwd = await bcrypt.hash(pwd, 10);
     const createdUser = createUser(email, hashedPwd);
-    if (!createdUser.error) {
-      const token = setUserToken(createdUser, email, 100);
-      res.json({
-        status: "success",
-        token: token,
-        message: "User created successfully successfully",
-      });
-    } else {
-      throw new Error(createdUser?.message || "Cannot create user");
+    if (createdUser && createdUser.error) {
+      throw new Error(createdUser.message || "Cannot create user");
     }
+    const token = setUserToken(createdUser, email, 100);
+    res.json({
+      status: "success",
+      token: token,
+      message: "User created successfully successfully",
+    });
   } catch (e) {
     res.json({ status: "error", message: e.message, error: true });
   }
