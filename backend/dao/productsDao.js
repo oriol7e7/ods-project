@@ -70,7 +70,7 @@ export const updateProduct = (id, product) => {
   }
 };
 
-export const getProductsByUserId = async (user_id) => {
+export const getProductsByUserId = (user_id) => {
   const stmt = db.prepare("SELECT * FROM products WHERE user_id = ?");
   return stmt.all(user_id);
 };

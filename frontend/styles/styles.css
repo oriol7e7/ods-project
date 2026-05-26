@@ -359,3 +359,47 @@
 .formSubmitBtn {
   margin-top: 1rem;
 }
+
+.modifyBtns {
+  display: flex;
+  gap: 2rem;
+}
+
+.modifyProduct,
+.deleteProduct {
+  font-family: "Montserrat", sans-serif;
+  font-size: 1rem;
+  font-weight: bold;
+  padding: 0.4rem 1.2rem;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  width: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.modifyProduct {
+  background-color: transparent;
+  color: var(--text-main);
+  border: solid 2px var(--text-muted);
+}
+
+.modifyProduct:hover {
+  border-color: var(--primary);
+  color: var(--primary);
+  transform: translateY(-2px);
+}
+
+.deleteProduct {
+  border-color: var(--error);
+  color: var(--error);
+  background-color: transparent;
+}
+
+.deleteProduct:hover {
+  border-color: var(--error);
+  color: var(--error);
+  transform: translateY(-2px);
+}

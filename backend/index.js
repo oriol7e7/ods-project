@@ -144,7 +144,7 @@ app.get("/products/me", (req, res) => {
     } else {
       const decoded = jwt.verify(token, "1234MegaKey67@@");
       const { user_id } = decoded;
-      const data = getProductsByUserId(user_id) || [];
+      const data = getProductsByUserId(user_id);
       res.json(data);
     }
   } catch (e) {

@@ -42,7 +42,7 @@ form.addEventListener("submit", async (e) => {
     if (response.error) {
       throw new Error(response.message || "Error desconegut del servidor");
     } else {
-      window.location.href = "productes.html";
+      window.location.href = "veure-productes.html";
     }
   } catch (e) {
     submitBtn.disabled = false;

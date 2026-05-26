@@ -51,7 +51,7 @@ export const putProduct = async (id, product) => {
     body: JSON.stringify(product),
   });
   if (!response.ok) {
-    throw new Error("Cannot put product");
+    throw new Error("Cannot put product " + response.message);
   }
   const data = await response.json();
   return data;
