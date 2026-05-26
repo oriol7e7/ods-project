@@ -34,7 +34,9 @@ export const getProductsByName = (name) => {
 };
 
 export const getProductById = (id) => {
-  const stmt = db.prepare("SELECT * FROM products WHERE id = ?");
+  const stmt = db.prepare(
+    "SELECT p.*, u.email  FROM products p JOIN users u ON u.id = p.user_id WHERE user_id = ?",
+  );
   return stmt.all(id);
 };
 
@@ -71,6 +73,8 @@ export const updateProduct = (id, product) => {
 };
 
 export const getProductsByUserId = (user_id) => {
-  const stmt = db.prepare("SELECT * FROM products WHERE user_id = ?");
+  const stmt = db.prepare(
+    "SELECT p.*, u.email  FROM products p JOIN users u ON u.id = p.user_id WHERE user_id = ?",
+  );
   return stmt.all(user_id);
 };
