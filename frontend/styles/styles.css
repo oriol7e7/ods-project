@@ -176,12 +176,13 @@
   padding: 2rem;
   display: flex;
   flex-direction: column;
-  gap: 1rem;
+  gap: 2rem;
 }
 
 .productesGrid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(200px, 350px));
+  transition: all 0.3s ease;
   gap: 1rem;
 }
 
@@ -412,8 +413,8 @@
   align-self: center;
   border: solid 3px var(--text-muted);
   border-radius: 6px;
-  width: 30%;
-  padding: 0.25rem;
+  width: 400px;
+  padding: 0.5rem;
   transition: border-color 0.2s ease;
 }
 

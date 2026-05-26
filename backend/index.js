@@ -175,9 +175,10 @@ app.get("/products/name/:name", (req, res) => {
       message: "Empty product name",
       error: true,
     });
+  } else {
+    const data = getProductsByName(name);
+    res.json(data);
   }
-  const data = getProductsByName(name);
-  res.json(data);
 });
 
 app.post("/products", (req, res) => {
