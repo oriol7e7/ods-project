@@ -21,7 +21,7 @@ const renderProducts = async () => {
       //Si es un array buit o no es un array
       if (!products || products.length == 0 || !Array.isArray(products)) {
         grid.innerHTML =
-          "<h4>Encara no tens cap producte pujat. <a href='crear-producte.html'>Puja un!</a></h4>";
+          "<h4>Encara no tens cap producte pujat. <a class='ctaLink' href='crear-producte.html'>Puja un!</a></h4>";
         return;
       }
       products.forEach((p) => {

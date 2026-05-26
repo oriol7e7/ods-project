@@ -8,7 +8,6 @@ const renderProductPage = async () => {
       throw new Error("Cannot get id from url");
     }
     const product = await getProductById(id);
-    console.log("PRODUCT (API RETURN): " + product);
     renderProduct(product);
   } catch (e) {
     mainTitle.textContent = "Producte no trobat";

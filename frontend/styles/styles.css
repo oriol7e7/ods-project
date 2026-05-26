@@ -261,11 +261,14 @@
 }
 
 .producteInfo img {
-  width: 50%;
   aspect-ratio: 16/9;
   object-fit: cover;
+  object-position: center;
   border: solid 3px var(--primary);
   border-radius: 6px;
+  background: #f3f3f3;
+  display: block;
+  width: 50%;
 }
 
 .producteInfo article {
@@ -274,6 +277,7 @@
   justify-content: flex-start;
   align-items: flex-start;
   gap: 1rem;
+  width: 50%;
 }
 
 .productArticle p {
@@ -437,4 +441,15 @@
 
 .searcher:has(.searcherInput:focus) {
   border-color: var(--primary);
+}
+
+.ctaLink {
+  color: var(--primary);
+  cursor: pointer;
+  font-weight: bold;
+  transition: all 0.2s ease;
+}
+
+.ctaLink {
+  color: var(--primary-hover);
 }

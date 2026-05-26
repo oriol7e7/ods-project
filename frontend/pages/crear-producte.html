@@ -12,50 +12,87 @@
   </head>
   <body class="productesBody">
     <header id="header"></header>
-   <main class="productesMain createProductMain">
-  <h1>Crea un producte</h1>
-  <form id="createProductForm" class="formCard"> 
-    <div class="formSect">
-      <label for="name">Nom del producte:</label>
-      <input class="loginInput" type="text" id="name" name="name" required>
-    </div>
-    <div class="formSect">
-      <label for="price">Preu (€):</label>
-      <input class="loginInput" type="number" step="0.01" id="price" name="price" required>
-    </div>
-    <div class="formSect">
-      <label for="desc">Descripció:</label>
-      <textarea class="loginInput formTextarea" id="desc" name="desc" rows="4" required></textarea>
-    </div>
-    <div class="formSect">
-      <label for="state">Estat:</label>
-      <select class="loginInput" id="state" name="state" required>
-        <option value="" disabled selected>Selecciona l'estat...</option>
-        <option value="Nou">Nou</option>
-        <option value="Com nou">Com nou</option>
-        <option value="Usat">Usat</option>
-      </select>
-    </div>
-    <div class="formSect">
-      <label for="modality">Modalitat:</label>
-      <select class="loginInput" id="modality" name="modality" required>
-        <option value="" disabled selected>Selecciona la modalitat...</option>
-        <option value="Venda">Venda</option>
-        <option value="Intercanvi">Intercanvi</option>
-        <option value="Donació">Donació</option>
-      </select>
-    </div>
-    <div class="formSect">
-      <label for="location">Localització (Ciutat o barri):</label>
-      <input class="loginInput" type="text" id="location" name="location" required>
-    </div>
-    <div class="formSect">
-      <label for="img">URL de la imatge:</label>
-      <input class="loginInput" type="url" id="img" name="img" placeholder="https://..." required>
-    </div>
-    <p id="errorMsg" class="errorMsg"></p>
-    <button type="submit" class="submitAuth formSubmitBtn" id="submitBtn">Crear Producte</button>
-  </form>
-</main>
+    <main class="productesMain createProductMain">
+      <h1>Crea un producte</h1>
+      <form id="createProductForm" class="formCard">
+        <div class="formSect">
+          <label for="name">Nom del producte:</label>
+          <input
+            class="loginInput"
+            type="text"
+            id="name"
+            name="name"
+            required
+          />
+        </div>
+        <div class="formSect">
+          <label for="price">Preu (€):</label>
+          <input
+            class="loginInput"
+            type="number"
+            step="0.01"
+            id="price"
+            name="price"
+            required
+            min="0"
+          />
+        </div>
+        <div class="formSect">
+          <label for="desc">Descripció:</label>
+          <textarea
+            class="loginInput formTextarea"
+            id="desc"
+            name="desc"
+            rows="4"
+            required
+          ></textarea>
+        </div>
+        <div class="formSect">
+          <label for="state">Estat:</label>
+          <select class="loginInput" id="state" name="state" required>
+            <option value="" disabled selected>Selecciona l'estat...</option>
+            <option value="Nou">Nou</option>
+            <option value="Com nou">Com nou</option>
+            <option value="Usat">Usat</option>
+          </select>
+        </div>
+        <div class="formSect">
+          <label for="modality">Modalitat:</label>
+          <select class="loginInput" id="modality" name="modality" required>
+            <option value="" disabled selected>
+              Selecciona la modalitat...
+            </option>
+            <option value="Venda">Venda</option>
+            <option value="Intercanvi">Intercanvi</option>
+            <option value="Donació">Donació</option>
+          </select>
+        </div>
+        <div class="formSect">
+          <label for="location">Localització (Ciutat o barri):</label>
+          <input
+            class="loginInput"
+            type="text"
+            id="location"
+            name="location"
+            required
+          />
+        </div>
+        <div class="formSect">
+          <label for="img">URL de la imatge:</label>
+          <input
+            class="loginInput"
+            type="url"
+            id="img"
+            name="img"
+            placeholder="https://..."
+            required
+          />
+        </div>
+        <p id="errorMsg" class="errorMsg"></p>
+        <button type="submit" class="submitAuth formSubmitBtn" id="submitBtn">
+          Crear Producte
+        </button>
+      </form>
+    </main>
   </body>
 </html>
