@@ -1,4 +1,4 @@
-import { getProductById } from "./api/api.js";
+import { getProductById } from "../api/api.js";
 
 const mainTitle = document.getElementById("productName");
 const renderProductPage = async () => {

@@ -1,4 +1,4 @@
-import { getProductsByName, getAllProducts } from "./api/api.js";
+import { getProductsByName, getAllProducts } from "../api/api.js";
 const searcher = document.getElementById("searcher");
 const grid = document.getElementById("productesGrid");
 searcher.addEventListener("input", async () => {

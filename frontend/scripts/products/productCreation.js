@@ -1,4 +1,4 @@
-import { postProduct, userIsLogged } from "./api/api.js";
+import { postProduct, userIsLogged } from "../api/api.js";
 const form = document.getElementById("createProductForm");
 const inputName = document.getElementById("name");
 const inputPrice = document.getElementById("price");

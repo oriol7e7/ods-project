@@ -3,7 +3,7 @@ import {
   deleteProduct,
   userIsLogged,
   putProduct,
-} from "./api/api.js";
+} from "../api/api.js";
 const mainTitle = document.getElementById("productName");
 let data = undefined;
 document.addEventListener("DOMContentLoaded", async () => {

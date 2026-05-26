@@ -1,4 +1,4 @@
-import { getAllProducts } from "./api/api.js";
+import { getAllProducts } from "../api/api.js";
 
 const grid = document.getElementById("productesGrid");
 

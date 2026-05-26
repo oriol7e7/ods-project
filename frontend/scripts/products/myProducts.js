@@ -1,4 +1,4 @@
-import { userIsLogged, getProductsByLoggedUser } from "./api/api.js";
+import { userIsLogged, getProductsByLoggedUser } from "../api/api.js";
 
 const grid = document.getElementById("productesGrid");
 document.addEventListener("DOMContentLoaded", async () => {
