@@ -181,9 +181,16 @@
 
 .productesGrid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 350px));
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
   transition: all 0.3s ease;
   gap: 1rem;
+  justify-content: center;
+}
+
+@media (min-width: 1000px) {
+  .productesGrid {
+    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+  }
 }
 
 .productGridCard {
