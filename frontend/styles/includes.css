@@ -63,6 +63,7 @@ header {
 .headerNav #login:hover {
   transform: translateY(-1px);
   background-color: var(--primary-hover);
+  border: solid 2px var(--primary-hover);
 }
 
 .headerNav #logout {
@@ -75,4 +76,13 @@ header {
   border-color: var(--error);
   color: var(--error);
   transform: translateY(-2px);
+}
+
+#darkmode {
+  cursor: pointer;
+  color: black;
+}
+
+.dark #darkmode {
+  color: white;
 }
