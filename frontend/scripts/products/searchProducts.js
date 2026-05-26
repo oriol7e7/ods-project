@@ -24,6 +24,12 @@ searcher.addEventListener("input", async () => {
   } catch (e) {}
 });
 
+/**
+ * Create and display a search result product card in the grid
+ * @param {Object} product - The product data
+ * @param {HTMLElement} container - The container element to append the card
+ * @author Oriol Plazas
+ */
 const renderProductCard = async (product, container) => {
   const article = document.createElement("article");
   const productHTML = `
@@ -48,6 +54,11 @@ const renderProductCard = async (product, container) => {
   container.appendChild(article);
 };
 
+/**
+ * Load and display all available products for search
+ * @author Oriol Plazas
+ * @throws {Error} If fetch fails or grid element not found
+ */
 const renderAllProducts = async () => {
   if (grid) {
     try {

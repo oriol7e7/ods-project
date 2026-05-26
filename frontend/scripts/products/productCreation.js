@@ -52,6 +52,11 @@ form.addEventListener("submit", async (e) => {
   }
 });
 
+/**
+ * Remove whitespace from form inputs and validate they're not empty
+ * @author Oriol Plazas
+ * @throws {Error} If any field is empty
+ */
 const trimFormValues = () => {
   const inputs = [
     inputName,
@@ -70,6 +75,10 @@ const trimFormValues = () => {
   });
 };
 
+/**
+ * Display loading spinner on submit button
+ * @author Oriol Plazas
+ */
 const setLoadingState = () => {
   errorMsg.textContent = "";
   submitBtn.disabled = true;

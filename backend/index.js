@@ -38,6 +38,20 @@ app.use(
 );
 app.use(bodyParser.json());
 app.use(cookieParser());
+/**
+ * Check if a product has all required fields
+ * @param {Object} product - The product object
+ * @param {number} product.user_id - ID of the user
+ * @param {string} product.name - Product name
+ * @param {number} product.price - Product price
+ * @param {string} product.desc - Product description
+ * @param {string} product.state - Product state
+ * @param {string} product.modality - Product modality
+ * @param {string} product.location - Product location
+ * @param {string} product.img - Product image URL
+ * @returns {boolean} True if all required fields are present
+ * @author Oriol Plazas
+ */
 const validateProduct = (product) => {
   if (
     product.user_id &&
@@ -56,6 +70,14 @@ const validateProduct = (product) => {
   }
 };
 
+/**
+ * Create a JWT token for user authentication
+ * @param {number} user_id - The user ID
+ * @param {string} mail - The user email
+ * @param {number} [days=7] - Days until token expires
+ * @returns {string} JWT token
+ * @author Oriol Plazas
+ */
 export const setUserToken = (user_id, mail, days = 7) => {
   const token = jwt.sign({ user_id: user_id, mail: mail }, "1234MegaKey67@@", {
     expiresIn: `${days}d`,

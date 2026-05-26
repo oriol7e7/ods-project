@@ -2,6 +2,11 @@ import { getAllProducts } from "../api/api.js";
 
 const grid = document.getElementById("productesGrid");
 
+/**
+ * Load and display all available products on the page
+ * @author Oriol Plazas
+ * @throws {Error} If fetch fails or grid element not found
+ */
 const renderProducts = async () => {
   if (grid) {
     try {
@@ -16,6 +21,12 @@ const renderProducts = async () => {
   }
 };
 
+/**
+ * Create and display a product card in the grid
+ * @param {Object} product - The product data
+ * @param {HTMLElement} container - The container element to append the card
+ * @author Oriol Plazas
+ */
 const renderProductCard = async (product, container) => {
   const article = document.createElement("article");
   const productHTML = `

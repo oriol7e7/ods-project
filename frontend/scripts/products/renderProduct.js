@@ -1,6 +1,11 @@
 import { getProductById } from "../api/api.js";
 
 const mainTitle = document.getElementById("productName");
+/**
+ * Load product details from URL parameter and render them
+ * @author Oriol Plazas
+ * @throws {Error} If product ID not found or fetch fails
+ */
 const renderProductPage = async () => {
   try {
     const id = getUrlId();
@@ -15,6 +20,11 @@ const renderProductPage = async () => {
   }
 };
 
+/**
+ * Extract product ID from URL query parameters
+ * @returns {string|null} The product ID from URL or null if not found
+ * @author Oriol Plazas
+ */
 const getUrlId = () => {
   const urlQueryString = window.location.search;
   const urlParams = new URLSearchParams(urlQueryString);
@@ -22,6 +32,11 @@ const getUrlId = () => {
   return id ? id : null;
 };
 
+/**
+ * Display product details on the page
+ * @param {Object} product - The product data to display
+ * @author Oriol Plazas
+ */
 const renderProduct = (product) => {
   mainTitle.textContent = product.name;
   document.getElementById("product").innerHTML = `
