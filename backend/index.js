@@ -203,7 +203,7 @@ app.post("/products", (req, res) => {
 
 app.delete("/products/:id", (req, res) => {
   try {
-    const id = req.params.id;
+    const id = parseInt(req.params.id);
     if (deleteProductById(id)) {
       res.json({ status: "success", message: "Product deleted successfully" });
     } else {

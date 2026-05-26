@@ -10,6 +10,7 @@ const renderProductPage = async () => {
     const product = await getProductById(id);
     renderProduct(product);
   } catch (e) {
+    console.log(e);
     mainTitle.textContent = "Producte no trobat";
   }
 };

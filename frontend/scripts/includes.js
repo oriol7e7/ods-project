@@ -9,6 +9,7 @@ let header = `
 <nav class="headerNav">
 <a class="headerLinks" href="/frontend/pages/veure-productes.html">Productes disponibles</a>
 <a class="headerLinks" href="/frontend/pages/gestionar-productes.html">Gestionar productes</a>
+<a class="headerLinks" href="/frontend/pages/crear-producte.html">Puja un producte</a>
 <a class="headerLinks" href="/frontend/pages/sostenibilitat.html">Sostenibilitat</a>
 </nav>
 `;
@@ -22,6 +23,7 @@ document.addEventListener("DOMContentLoaded", async () => {
         <nav class="headerNav">
           <a class="headerLinks" href="/frontend/pages/veure-productes.html">Productes disponibles</a>
           <a class="headerLinks" href="/frontend/pages/gestionar-productes.html">Gestionar productes</a>
+          <a class="headerLinks" href="/frontend/pages/crear-producte.html">Puja un producte</a>
           <a class="headerLinks" href="/frontend/pages/sostenibilitat.html">Sostenibilitat</a>
           <button class="logout" id="logout">Log Out</button>
         </nav>
@@ -33,6 +35,7 @@ document.addEventListener("DOMContentLoaded", async () => {
         <nav class="headerNav">
           <a class="headerLinks" href="/frontend/pages/veure-productes.html">Productes disponibles</a>
           <a class="headerLinks" href="/frontend/pages/gestionar-productes.html">Gestionar productes</a>
+          <a class="headerLinks" href="/frontend/pages/crear-producte.html">Puja un producte</a>
           <a class="headerLinks" href="/frontend/pages/sostenibilitat.html">Sostenibilitat</a>
           <button class="login" id="login">Log In</button> 
         </nav>
@@ -47,6 +50,7 @@ document.addEventListener("DOMContentLoaded", async () => {
       <nav class="headerNav">
         <a class="headerLinks" href="/frontend/pages/veure-productes.html">Productes disponibles</a>
         <a class="headerLinks" href="/frontend/pages/gestionar-productes.html">Gestionar productes</a>
+        <a class="headerLinks" href="/frontend/pages/crear-producte.html">Puja un producte</a>
         <a class="headerLinks" href="/frontend/pages/sostenibilitat.html">Sostenibilitat</a>
       </nav>
     `;

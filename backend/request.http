@@ -2,7 +2,7 @@ GET http://localhost:3000/users
 
 ###
 
-GET http://localhost:3000/products/1
+GET http://localhost:3000/products/14
 
 ###
 
@@ -19,15 +19,161 @@ Content-Type: application/json
   "location": "Barcelona Centre",
   "img": "https://i8.amplience.net/i/epsonemear/fh08_w_std_03_jpg"
 }
+
 ###
+
 PUT http://localhost:3000/books/3 HTTP/1.1
 Content-Type: application/json
 
 {
   "name": "Charlie And The Chocolate Factory",
-  "year":1964
+  "year": 1964
 }
+
 ###
-DELETE http://localhost:3000/books/3 HTTP/1.1
 
+DELETE http://localhost:3000/products/21 HTTP/1.1
 
+###
+
+POST http://localhost:3000/products HTTP/1.1
+Content-Type: application/json
+
+{
+  "user_id": 10,
+  "name": "MacBook Air M1 2020",
+  "price": 720,
+  "desc": "Portàtil Apple en perfecte estat. 8GB RAM i 256GB SSD. Bateria amb molt bona salut i carregador original inclòs.",
+  "state": "Excel·lent estat",
+  "modality": "Venda",
+  "location": "Barcelona",
+  "img": "https://images.unsplash.com/photo-1517336714739-489689fd1ca8?q=80&w=1200&auto=format&fit=crop"
+}
+
+###
+
+POST http://localhost:3000/products HTTP/1.1
+Content-Type: application/json
+
+{
+  "user_id": 10,
+  "name": "iPhone 13 Pro 128GB",
+  "price": 650,
+  "desc": "iPhone amb molt poc ús, sense ratllades. Inclou caixa original i funda transparent.",
+  "state": "Molt bon estat",
+  "modality": "Venda",
+  "location": "Hospitalet de Llobregat",
+  "img": "https://images.unsplash.com/photo-1632661674596-df8be070a5c5?q=80&w=1200&auto=format&fit=crop"
+}
+
+###
+
+POST http://localhost:3000/products HTTP/1.1
+Content-Type: application/json
+
+{
+  "user_id": 10,
+  "name": "Nintendo Switch OLED",
+  "price": 280,
+  "desc": "Consola Nintendo Switch OLED amb dock i comandaments originals. Funciona perfectament.",
+  "state": "Bon estat",
+  "modality": "Venda",
+  "location": "Badalona",
+  "img": "https://images.unsplash.com/photo-1606144042614-b2417e99c4e3?q=80&w=1200&auto=format&fit=crop"
+}
+
+###
+
+POST http://localhost:3000/products HTTP/1.1
+Content-Type: application/json
+
+{
+  "user_id": 10,
+  "name": "Monitor LG UltraWide 34\"",
+  "price": 310,
+  "desc": "Monitor ideal per treballar o gaming. Resolució UltraWide i molt bona qualitat d'imatge.",
+  "state": "Excel·lent estat",
+  "modality": "Venda",
+  "location": "Barcelona Centre",
+  "img": "https://images.unsplash.com/photo-1527443224154-c4a3942d3acf?q=80&w=1200&auto=format&fit=crop"
+}
+
+###
+
+POST http://localhost:3000/products HTTP/1.1
+Content-Type: application/json
+
+{
+  "user_id": 10,
+  "name": "Teclat Mecànic Logitech G Pro",
+  "price": 70,
+  "desc": "Teclat gaming mecànic RGB amb switches tàctils. Perfecte per gaming i programació.",
+  "state": "Molt bon estat",
+  "modality": "Venda",
+  "location": "Terrassa",
+  "img": "https://images.unsplash.com/photo-1511467687858-23d96c32e4ae?q=80&w=1200&auto=format&fit=crop"
+}
+
+###
+
+POST http://localhost:3000/products HTTP/1.1
+Content-Type: application/json
+
+{
+  "user_id": 10,
+  "name": "Patinet Xiaomi Mi Scooter",
+  "price": 230,
+  "desc": "Patinet elèctric amb bona autonomia. Inclou carregador i roda recent canviada.",
+  "state": "Bon estat",
+  "modality": "Venda",
+  "location": "Sabadell",
+  "img": "https://images.unsplash.com/photo-1571068316344-75bc76f77890?q=80&w=1200&auto=format&fit=crop"
+}
+
+###
+
+POST http://localhost:3000/products HTTP/1.1
+Content-Type: application/json
+
+{
+  "user_id": 10,
+  "name": "Càmera Sony Alpha A6000",
+  "price": 400,
+  "desc": "Càmera mirrorless compacta ideal per fotografia i vídeo. Inclou objectiu i bateria extra.",
+  "state": "Excel·lent estat",
+  "modality": "Venda",
+  "location": "Barcelona Nord",
+  "img": "https://images.unsplash.com/photo-1516035069371-29a1b244cc32?q=80&w=1200&auto=format&fit=crop"
+}
+
+###
+
+POST http://localhost:3000/products HTTP/1.1
+Content-Type: application/json
+
+{
+  "user_id": 10,
+  "name": "Bicicleta Mountain Bike Rockrider",
+  "price": 350,
+  "desc": "Bicicleta de muntanya amb suspensió davantera i frens de disc. Ideal per rutes.",
+  "state": "Bon estat",
+  "modality": "Venda",
+  "location": "Mataró",
+  "img": "https://images.unsplash.com/photo-1541625602330-2277a4c46182?q=80&w=1200&auto=format&fit=crop"
+}
+
+###
+
+POST http://localhost:3000/products HTTP/1.1
+Content-Type: application/json
+
+{
+  "user_id": 10,
+  "name": "PlayStation 5 Digital Edition",
+  "price": 430,
+  "desc": "PS5 Digital Edition amb un comandament DualSense i caixa original. Funciona perfectament.",
+  "state": "Excel·lent estat",
+  "modality": "Venda",
+  "location": "Barcelona Sants",
+  "img": "https://images.unsplash.com/photo-1606813907291-d86efa9b94db?q=80&w=1200&auto=format&fit=crop"
+}
