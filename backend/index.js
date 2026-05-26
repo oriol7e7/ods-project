@@ -167,6 +167,19 @@ app.get("/products", (req, res) => {
   res.json(data);
 });
 
+app.get("/products/name/:name", (req, res) => {
+  const name = req.params.name;
+  if (name == null || name == "") {
+    res.json({
+      status: "error",
+      message: "Empty product name",
+      error: true,
+    });
+  }
+  const data = getProductsByName(name);
+  res.json(data);
+});
+
 app.post("/products", (req, res) => {
   try {
     const product = req.body;
