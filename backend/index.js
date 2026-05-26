@@ -151,7 +151,19 @@ app.get("/products/me", (req, res) => {
     res.json({ status: "error", message: e.message, error: true });
   }
 });
-
+app.get("/products/name/:name", (req, res) => {
+  const name = req.params.name;
+  if (name == null || name == "") {
+    res.json({
+      status: "error",
+      message: "Empty product name",
+      error: true,
+    });
+  } else {
+    const data = getProductsByName(name);
+    res.json(data);
+  }
+});
 app.get("/products/:id", (req, res) => {
   const id = parseInt(req.params.id);
   const data = getProductById(id);
@@ -165,20 +177,6 @@ app.get("/products/:id", (req, res) => {
 app.get("/products", (req, res) => {
   const data = getAllProducts();
   res.json(data);
-});
-
-app.get("/products/name/:name", (req, res) => {
-  const name = req.params.name;
-  if (name == null || name == "") {
-    res.json({
-      status: "error",
-      message: "Empty product name",
-      error: true,
-    });
-  } else {
-    const data = getProductsByName(name);
-    res.json(data);
-  }
 });
 
 app.post("/products", (req, res) => {
