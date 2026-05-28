@@ -2,6 +2,17 @@ import { getProductById, userIsLogged } from "../api/api.js";
 let logged = false;
 let userData;
 const mainTitle = document.getElementById("productName");
+
+document.addEventListener("DOMContentLoaded", async () => {
+  userData = await userIsLogged();
+  if (userData.loggedIn === true) {
+    logged = true;
+  } else {
+    logged = false;
+  }
+  renderProductPage();
+});
+
 /**
  * Load product details from URL parameter and render them
  * @author Oriol Plazas
@@ -14,6 +25,7 @@ const renderProductPage = async () => {
       throw new Error("Cannot get id from url");
     }
     const product = await getProductById(id);
+    document.title = `Detalls del producte ${product.name} | ProductCycle - Economia Circular`;
     renderProduct(product);
   } catch (e) {
     console.log(e);
@@ -41,6 +53,7 @@ const getUrlId = () => {
 const renderProduct = (product) => {
   mainTitle.textContent = product.name;
   if (logged === true) {
+    //si l'usuari esta logat, mostrar botons de contacte i email
     document.getElementById("product").innerHTML = `
   <img src="${product.img}" alt="Imatge de ${product.name}">
   <article class="productArticle">
@@ -62,6 +75,7 @@ const renderProduct = (product) => {
       );
     });
   } else {
+    //sino esta logat, nomes mostrar info producte
     document.getElementById("product").innerHTML = `
   <img src="${product.img}" alt="Imatge de ${product.name}">
   <article class="productArticle">
@@ -77,13 +91,3 @@ const renderProduct = (product) => {
   `;
   }
 };
-
-document.addEventListener("DOMContentLoaded", async () => {
-  userData = await userIsLogged();
-  if (userData.loggedIn === true) {
-    logged = true;
-  } else {
-    logged = false;
-  }
-  renderProductPage();
-});

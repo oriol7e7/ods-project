@@ -55,6 +55,7 @@ const renderProductPage = async (data) => {
     if (!id) {
       throw new Error("Cannot get id from url");
     }
+    //agafa tots els productes disponibles per editar depenent de l'usuari
     let products;
     if (data.user.role == "admin") {
       products = await getAllProducts();
@@ -67,6 +68,8 @@ const renderProductPage = async (data) => {
       throw new Error("Product not found");
     }
     const product = await getProductById(id);
+    document.title = `Detalls del producte ${product.name} | ProductCycle - Economia Circular`;
+
     renderProduct(product, id);
   } catch (e) {
     if (

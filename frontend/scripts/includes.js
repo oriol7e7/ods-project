@@ -104,6 +104,11 @@ document.addEventListener("DOMContentLoaded", async () => {
   } finally {
     const toggleDarkMode = document.getElementById("darkmode");
     handleDarkMode(toggleDarkMode);
+    //Inyecta el footer si existe el elemento
+    const footerContainer = document.getElementById("footer");
+    if (footerContainer) {
+      createFooter(footerContainer);
+    }
   }
 });
 
@@ -124,4 +129,28 @@ const handleDarkMode = (btn) => {
     localStorage.setItem("darkmode", darkModeVar);
     document.documentElement.classList.toggle("dark");
   });
+};
+
+/**
+ * Get page name from document title
+ * @returns {string} Page name
+ * @author Oriol Plazas
+ */
+const getPageName = () => {
+  return document.title || "ProductCycle";
+};
+
+/**
+ * Inject footer dynamically
+ * @param  footerContainer - Footer element
+ * @author Oriol Plazas
+ */
+const createFooter = (footerContainer) => {
+  const pageName = getPageName();
+  footerContainer.innerHTML = `
+    <div class="footerContent">
+      <span class="footerTitle">${pageName}</span>
+      <p class="footerTagline">Els productes que no utilitzes mereixen una segona vida</p>
+    </div>
+  `;
 };
