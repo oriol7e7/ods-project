@@ -104,6 +104,7 @@
 
 - **Endpoint**: `/products`
 - **Mètode**: `POST`
+- **Autenticació**: Cookie JWT
 - **Cos de la petició:**
 
 ```json
@@ -124,16 +125,25 @@
 ```json
 {
   "status": "success",
-  "message": "Producte creat correctament"
+  "message": "Product created successfully"
 }
 ```
 
-- **Resposta d'error (400):**
+- **Resposta d'error si no autenticat (400):**
 
 ```json
 {
   "status": "error",
-  "message": "No s'ha pogut afegir el producte"
+  "message": "No user logged"
+}
+```
+
+- **Resposta d'error si dades inválides (400):**
+
+```json
+{
+  "status": "error",
+  "message": "Product sent not valid"
 }
 ```
 
@@ -143,6 +153,7 @@
 
 - **Endpoint**: `/products/:id`
 - **Mètode**: `PUT`
+- **Autenticació**: Cookie JWT
 - **Cos de la petició:**
 
 ```json
@@ -163,16 +174,16 @@
 ```json
 {
   "status": "success",
-  "message": "Producte modificat correctament"
+  "message": "Product modified successfully"
 }
 ```
 
-- **Resposta d'error (404):**
+- **Resposta d'error si no és teu (403):**
 
 ```json
 {
   "status": "error",
-  "message": "No s'ha pogut modificar el producte amb id: 23"
+  "message": "Not your product"
 }
 ```
 
@@ -182,23 +193,26 @@
 
 - **Endpoint**: `/products/:id`
 - **Mètode**: `DELETE`
+- **Autenticació**: Cookie JWT
 - **Resposta esperada (200):**
 
 ```json
 {
   "status": "success",
-  "message": "Producte eliminat correctament"
+  "message": "Product deleted successfully"
 }
 ```
 
-- **Resposta d'error (404):**
+- **Resposta d'error si no és teu (403):**
 
 ```json
 {
   "status": "error",
-  "message": "No s'ha pogut eliminar el producte amb id: 23"
+  "message": "Not your product"
 }
 ```
+
+````
 
 ---
 
@@ -213,7 +227,7 @@
   "email": "usuari@exemple.com",
   "pwd": "contrasenya"
 }
-```
+````
 
 - **Resposta esperada (200):**
 
@@ -267,6 +281,59 @@
     "mail": "usuari@exemple.com",
     "role": "normal"
   }
+}
+```
+
+- **Resposta d'error (401):**
+
+```json
+{
+  "loggedIn": false,
+  "message": "No authorized"
+}
+```
+
+---
+
+### 11. Obtenir tots els usuaris
+
+- **Endpoint**: `/users/all`
+- **Mètode**: `GET`
+- **Autenticació**: Cookie JWT (només admin)
+- **Resposta esperada (200):**
+
+```json
+[
+  {
+    "id": 1,
+    "email": "admin@pc.com",
+    "password": "hashedPassword...",
+    "role": "admin"
+  },
+  {
+    "id": 2,
+    "email": "usuari@exemple.com",
+    "password": "hashedPassword...",
+    "role": "normal"
+  }
+]
+```
+
+- **Resposta d'error si no ets admin (400):**
+
+```json
+{
+  "status": "error",
+  "message": "unauthorized, only admin users can fetch endpoint"
+}
+```
+
+- **Resposta d'error si no estàs autenticat (401):**
+
+```json
+{
+  "status": "error",
+  "message": "No user logged"
 }
 ```
 
