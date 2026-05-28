@@ -3,6 +3,7 @@ import {
   deleteProduct,
   userIsLogged,
   putProduct,
+  getProductsByLoggedUser,
 } from "../api/api.js";
 const mainTitle = document.getElementById("productName");
 let data = undefined;
@@ -52,6 +53,11 @@ const renderProductPage = async () => {
     const id = getUrlId();
     if (!id) {
       throw new Error("Cannot get id from url");
+    }
+    const products = await getProductsByLoggedUser();
+    const foundProduct = products.find((p) => p.id == id);
+    if (!foundProduct) {
+      throw new Error("Product not found");
     }
     const product = await getProductById(id);
     renderProduct(product, id);
