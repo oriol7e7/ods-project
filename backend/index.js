@@ -20,6 +20,7 @@ import {
   updateUser,
   getUserByEmail,
 } from "./dao/usersDao.js";
+import { getAllUsers } from "./dao/helpers.js";
 const PORT = 3000;
 const app = express();
 
@@ -250,6 +251,34 @@ app.put("/products/:id", (req, res) => {
       res.json({ status: "success", message: "Product modified successfully" });
     } else {
       res.json({ status: "error", message: "Cannot put product", error: true });
+    }
+  } catch (e) {
+    res.json({ status: "error", message: e.message, error: true });
+  }
+});
+
+app.get("/users/all", (req, res) => {
+  try {
+    //Llegeixo la possible cookie de l'usuari
+    const token = req.cookies.token;
+    if (!token) {
+      throw new Error("No user logged");
+    } else {
+      const decoded = jwt.verify(token, "1234MegaKey67@@");
+      const { user_id } = decoded;
+      const user = getUserById(user_id);
+      if (user.role == "admin") {
+        const users = getAllUsers();
+        res.status(200).json(users);
+      } else {
+        res
+          .status(400)
+          .json({
+            status: "error",
+            message: "unauthorized, only admin users can fetch endpoint",
+            error: true,
+          });
+      }
     }
   } catch (e) {
     res.json({ status: "error", message: e.message, error: true });
