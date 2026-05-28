@@ -1,4 +1,8 @@
-import { userIsLogged, getProductsByLoggedUser } from "../api/api.js";
+import {
+  userIsLogged,
+  getProductsByLoggedUser,
+  getAllProducts,
+} from "../api/api.js";
 
 const grid = document.getElementById("productesGrid");
 document.addEventListener("DOMContentLoaded", async () => {
@@ -7,7 +11,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     //SI no esta loguejat, porta al login
     window.location.href = "autenticacio.html";
   } else {
-    renderProducts();
+    renderProducts(data);
   }
 });
 /**
@@ -15,12 +19,17 @@ document.addEventListener("DOMContentLoaded", async () => {
  * @author Oriol Plazas
  * @throws {Error} If fetch fails or grid element not found
  */
-const renderProducts = async () => {
+const renderProducts = async (data) => {
   if (grid) {
     try {
-      const products = await getProductsByLoggedUser();
+      let products;
+      if (data.user.role == "admin") {
+        products = await getAllProducts();
+      } else {
+        products = await getProductsByLoggedUser();
+      }
+
       if (products.error) {
-        console.log("ERRO: await getProductsByLoggedUser");
         throw new Error("Error fetching api");
       }
       //Si es un array buit o no es un array

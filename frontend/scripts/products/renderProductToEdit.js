@@ -4,6 +4,7 @@ import {
   userIsLogged,
   putProduct,
   getProductsByLoggedUser,
+  getAllProducts,
 } from "../api/api.js";
 const mainTitle = document.getElementById("productName");
 let data = undefined;
@@ -12,7 +13,7 @@ document.addEventListener("DOMContentLoaded", async () => {
   if (data.loggedIn === false) {
     window.location.href = "autenticacio.html";
   } else {
-    renderProductPage();
+    renderProductPage(data);
   }
 });
 
@@ -48,13 +49,19 @@ const setLoadingState = (errorElement, buttonElement) => {
  * @author Oriol Plazas
  * @throws {Error} If product not found or fetch fails
  */
-const renderProductPage = async () => {
+const renderProductPage = async (data) => {
   try {
     const id = getUrlId();
     if (!id) {
       throw new Error("Cannot get id from url");
     }
-    const products = await getProductsByLoggedUser();
+    let products;
+    if (data.user.role == "admin") {
+      products = await getAllProducts();
+    } else {
+      products = await getProductsByLoggedUser();
+    }
+    //si l'id del producte de la url no esta a la llista de productes creats per l'usuari, llença excepcio
     const foundProduct = products.find((p) => p.id == id);
     if (!foundProduct) {
       throw new Error("Product not found");

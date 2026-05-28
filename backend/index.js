@@ -146,10 +146,11 @@ app.get("/auth/me", (req, res) => {
     } else {
       const decoded = jwt.verify(token, "1234MegaKey67@@");
       const { user_id, mail } = decoded;
+      const user = getUserById(user_id);
       res.json({
         loggedIn: true,
         message: "User logged in",
-        user: { user_id: user_id, mail: mail },
+        user: { user_id: user_id, mail: mail, role: user.role },
       });
     }
   } catch (e) {
