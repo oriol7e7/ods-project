@@ -515,3 +515,96 @@ textarea {
   align-items: center;
   padding: .5rem;
 }
+
+/* Mobile Responsive Media Queries */
+@media (max-width: 768px) {
+
+  /* Product Detail Layout - Stack vertically, more compact */
+  .producteInfo {
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    padding: 0;
+  }
+
+  .producteInfo img {
+    width: 100%;
+    max-width: 100%;
+    border-width: 2px;
+  }
+
+  .producteInfo article {
+    width: 100%;
+    align-items: center;
+    text-align: center;
+    gap: 0.75rem;
+  }
+
+  .producteInfo h3 {
+    font-size: 1.3rem;
+    margin: 0;
+  }
+
+  .productArticle p {
+    width: 100%;
+    font-size: 0.95rem;
+  }
+
+  .contactBtn {
+    width: 100%;
+    padding: 0.6rem;
+  }
+
+  .productTags {
+    width: 100%;
+    justify-content: center;
+    gap: 1rem;
+    padding: 0.5rem 0;
+    margin: 0.75rem 0;
+  }
+
+  .modifyBtns {
+    flex-direction: column;
+    width: 100%;
+    gap: 1rem;
+  }
+
+  .modifyProduct,
+  .deleteProduct {
+    width: 100%;
+    padding: 0.6rem;
+  }
+
+  /* Form Layout - Increase width */
+  .login {
+    width: 90%;
+    padding: 1.5rem;
+    gap: 0.75rem;
+  }
+
+  .sect {
+    width: 100%;
+    gap: 0.35rem;
+  }
+
+  .formCard {
+    width: 95%;
+    padding: 1.5rem;
+    gap: 0.75rem;
+  }
+
+  .submitAuth {
+    width: 100%;
+    padding: 0.6rem;
+  }
+
+  .productesMain {
+    padding: 1rem;
+    gap: 1.5rem;
+  }
+
+  .productesMain h1 {
+    font-size: 1.5rem;
+    margin: 0;
+  }
+}
