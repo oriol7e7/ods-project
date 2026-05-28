@@ -482,3 +482,8 @@ textarea {
 .dark .producteInfo img {
   background: #333333;
 }
+
+.userEmail {
+  color: var(--text-muted);
+  font-weight: bold;
+}
