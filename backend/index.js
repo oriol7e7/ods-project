@@ -86,6 +86,24 @@ export const setUserToken = (user_id, mail, days = 7) => {
   return token;
 };
 
+/**
+ * Verify user token from cookies and return user data
+ * @param {Object} req - Express request object
+ * @returns {Object} Object with { user_id, mail, user }
+ * @throws {Error} If token is missing or invalid
+ * @author Oriol Plazas
+ */
+const verifyUserToken = (req) => {
+  const token = req.cookies.token;
+  if (!token) {
+    throw new Error("No user logged");
+  }
+  const decoded = jwt.verify(token, "1234MegaKey67@@");
+  const { user_id, mail } = decoded;
+  const user = getUserById(user_id);
+  return { user_id, mail, user };
+};
+
 //Posa server a escoltar
 app.listen(PORT, () => {
   console.log("Server listening on " + PORT);
@@ -140,37 +158,25 @@ app.post("/login", async (req, res) => {
 
 app.get("/auth/me", (req, res) => {
   try {
-    //Llegeixo la possible cookie de l'usuari
-    const token = req.cookies.token;
-    if (!token) {
-      res.status(401).json({ loggedIn: false, message: "No authorized" });
-    } else {
-      const decoded = jwt.verify(token, "1234MegaKey67@@");
-      const { user_id, mail } = decoded;
-      const user = getUserById(user_id);
-      res.json({
-        loggedIn: true,
-        message: "User logged in",
-        user: { user_id: user_id, mail: mail, role: user.role },
-      });
-    }
+    const { user_id, mail, user } = verifyUserToken(req);
+    res.json({
+      loggedIn: true,
+      message: "User logged in",
+      user: { user_id: user_id, mail: mail, role: user.role },
+    });
   } catch (e) {
+    if (e.message === "No user logged") {
+      return res.status(401).json({ loggedIn: false, message: "No authorized" });
+    }
     res.json({ status: "error", message: e.message, error: true });
   }
 });
 
 app.get("/products/me", (req, res) => {
   try {
-    //Llegeixo la possible cookie de l'usuari
-    const token = req.cookies.token;
-    if (!token) {
-      throw new Error("No user logged");
-    } else {
-      const decoded = jwt.verify(token, "1234MegaKey67@@");
-      const { user_id } = decoded;
-      const data = getProductsByUserId(user_id);
-      res.json(data);
-    }
+    const { user_id } = verifyUserToken(req);
+    const data = getProductsByUserId(user_id);
+    res.json(data);
   } catch (e) {
     res.json({ status: "error", message: e.message, error: true });
   }
@@ -205,6 +211,7 @@ app.get("/products", (req, res) => {
 
 app.post("/products", (req, res) => {
   try {
+    verifyUserToken(req);
     const product = req.body;
     if (!validateProduct(product)) {
       throw new Error("Product sent not valid");
@@ -225,7 +232,13 @@ app.post("/products", (req, res) => {
 
 app.delete("/products/:id", (req, res) => {
   try {
+    const { user_id, user } = verifyUserToken(req);
     const id = parseInt(req.params.id);
+    const productsByLoggedUser = getProductsByUserId(user_id);
+    const productToEdit = productsByLoggedUser.find((p) => p.id == id);
+    if (user.role != "admin" && !productToEdit) {
+      throw new Error("Not your product");
+    }
     if (deleteProductById(id)) {
       res.json({ status: "success", message: "Product deleted successfully" });
     } else {
@@ -242,7 +255,13 @@ app.delete("/products/:id", (req, res) => {
 
 app.put("/products/:id", (req, res) => {
   try {
+    const { user_id, user } = verifyUserToken(req);
     const id = parseInt(req.params.id);
+    const productsByLoggedUser = getProductsByUserId(user_id);
+    const productToEdit = productsByLoggedUser.find((p) => p.id == id);
+    if (user.role != "admin" || !productToEdit) {
+      throw new Error("Not your product");
+    }
     const product = req.body;
     if (!validateProduct(product)) {
       throw new Error("Product sent not valid");
@@ -259,26 +278,16 @@ app.put("/products/:id", (req, res) => {
 
 app.get("/users/all", (req, res) => {
   try {
-    //Llegeixo la possible cookie de l'usuari
-    const token = req.cookies.token;
-    if (!token) {
-      throw new Error("No user logged");
+    const { user } = verifyUserToken(req);
+    if (user.role == "admin") {
+      const users = getAllUsers();
+      res.status(200).json(users);
     } else {
-      const decoded = jwt.verify(token, "1234MegaKey67@@");
-      const { user_id } = decoded;
-      const user = getUserById(user_id);
-      if (user.role == "admin") {
-        const users = getAllUsers();
-        res.status(200).json(users);
-      } else {
-        res
-          .status(400)
-          .json({
-            status: "error",
-            message: "unauthorized, only admin users can fetch endpoint",
-            error: true,
-          });
-      }
+      res.status(400).json({
+        status: "error",
+        message: "unauthorized, only admin users can fetch endpoint",
+        error: true,
+      });
     }
   } catch (e) {
     res.json({ status: "error", message: e.message, error: true });
