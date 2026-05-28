@@ -189,3 +189,18 @@ export const getProductsByName = async (name) => {
   const data = await response.json();
   return data;
 };
+
+/**
+ * Gets all users
+ * @returns {Promise<Array>} List of users
+ * @author Oriol Plazas
+ * @throws {Error} If fetch fails
+ */
+export const getAllUsers = async () => {
+  const response = await fetch("http://localhost:3000/users/all", {
+    method: "GET",
+    credentials: "include",
+  });
+  const data = await response.json();
+  return data;
+};

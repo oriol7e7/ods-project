@@ -65,13 +65,3 @@ export const getUserByEmail = (mail) => {
   const stmt = db.prepare("SELECT * FROM users WHERE email = ?");
   return stmt.get(mail) ? stmt.get(mail) : null;
 };
-
-/**
- * Get all users from the database
- * @returns {Array} Array of all users
- * @author Oriol Plazas
- */
-export const getAllUsers = () => {
-  const stmt = db.prepare("SELECT * FROM users");
-  return stmt.all();
-};

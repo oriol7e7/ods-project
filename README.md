@@ -1,5 +1,10 @@
 # API - ProductCycle Store
 
+### Usuari de proves administrador
+
+**Mail:** admin@pc.com
+**Password:** admin
+
 ### Base URL i URL al iniciar projecte (important)
 
 `http://localhost:3000`

@@ -485,3 +485,33 @@ textarea {
   color: var(--text-muted);
   font-weight: bold;
 }
+
+.manageUsers {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.userCard {
+  border-bottom: solid 2px var(--text-muted);
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding: .5rem;
+}
+
+.userCard h6 {
+  max-width: 20px;
+}
+
+
+
+.headerUserCard {
+  border-bottom: solid 2px var(--primary);
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding: .5rem;
+}
