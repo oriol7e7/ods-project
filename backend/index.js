@@ -166,7 +166,9 @@ app.get("/auth/me", (req, res) => {
     });
   } catch (e) {
     if (e.message === "No user logged") {
-      return res.status(401).json({ loggedIn: false, message: "No authorized" });
+      return res
+        .status(401)
+        .json({ loggedIn: false, message: "No authorized" });
     }
     res.json({ status: "error", message: e.message, error: true });
   }
@@ -232,13 +234,8 @@ app.post("/products", (req, res) => {
 
 app.delete("/products/:id", (req, res) => {
   try {
-    const { user_id, user } = verifyUserToken(req);
+    verifyUserToken(req);
     const id = parseInt(req.params.id);
-    const productsByLoggedUser = getProductsByUserId(user_id);
-    const productToEdit = productsByLoggedUser.find((p) => p.id == id);
-    if (user.role != "admin" && !productToEdit) {
-      throw new Error("Not your product");
-    }
     if (deleteProductById(id)) {
       res.json({ status: "success", message: "Product deleted successfully" });
     } else {
@@ -255,13 +252,8 @@ app.delete("/products/:id", (req, res) => {
 
 app.put("/products/:id", (req, res) => {
   try {
-    const { user_id, user } = verifyUserToken(req);
+    verifyUserToken(req);
     const id = parseInt(req.params.id);
-    const productsByLoggedUser = getProductsByUserId(user_id);
-    const productToEdit = productsByLoggedUser.find((p) => p.id == id);
-    if (user.role != "admin" || !productToEdit) {
-      throw new Error("Not your product");
-    }
     const product = req.body;
     if (!validateProduct(product)) {
       throw new Error("Product sent not valid");

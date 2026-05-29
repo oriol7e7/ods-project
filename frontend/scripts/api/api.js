@@ -37,6 +37,7 @@ export const postProduct = async (product) => {
       "Content-Type": "application/json",
     },
     body: JSON.stringify(product),
+    credentials: "include",
   });
   if (!response.ok) {
     throw new Error("Cannot post product");
@@ -55,6 +56,7 @@ export const postProduct = async (product) => {
 export const deleteProduct = async (id) => {
   const response = await fetch("http://localhost:3000/products/" + id, {
     method: "DELETE",
+    credentials: "include",
   });
   if (!response.ok) {
     throw new Error("Cannot delete product");
@@ -78,6 +80,7 @@ export const putProduct = async (id, product) => {
       "Content-Type": "application/json",
     },
     body: JSON.stringify(product),
+    credentials: "include",
   });
   if (!response.ok) {
     throw new Error("Cannot put product " + response.message);
